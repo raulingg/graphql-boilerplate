@@ -1,0 +1,166 @@
+#import  UserOrderByInput, UserWhereInput, PostOrderByInput, CommentOrderByInput, PostWhereInput, UserWhereUniqueInput, Role from './generated/prisma.graphql'
+
+directive @trim on INPUT_FIELD_DEFINITION
+directive @constraint(
+  minLength: Int
+  maxLength: Int
+  startsWith: String
+  endsWith: String
+  contains: String
+  notContains: String
+  pattern: String
+  format: String
+  min: Float
+  max: Float
+  exclusiveMin: Float
+  exclusiveMax: Float
+  multipleOf: Float
+) on INPUT_FIELD_DEFINITION
+
+type User {
+  id: ID!
+  name: String
+  lastname: String
+  email: String
+  role: Role
+  posts: [Post!]!
+  comments: [Comment!]!
+  updatedAt: String!
+  createdAt: String!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  body: String!
+  published: Boolean!
+  author: User
+  comments: [Comment!]!
+  updatedAt: String!
+  createdAt: String!
+}
+
+type Comment {
+  id: ID!
+  text: String!
+  author: User
+  post: Post
+  updatedAt: String!
+  createdAt: String!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+type Query {
+  me: User!
+  users(
+    where: UserWhereInput
+    orderBy: UserOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [User]!
+  posts(
+    where: PostWhereInput
+    orderBy: PostOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Post]!
+  myPosts(
+    where: PostWhereInput
+    orderBy: PostOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Post!]!
+  postById(id: ID!): Post!
+  comments(
+    first: Int
+    skip: Int
+    after: String
+    orderBy: CommentOrderByInput
+  ): [Comment!]!
+}
+
+type Mutation {
+  login(data: LoginUserInput!): AuthPayload!
+  register(data: RegisterUserInput!): AuthPayload!
+  updateUser(data: UpdateUserInput!): User
+  deleteUser(where: UserWhereUniqueInput!): User
+  createPost(data: CreatePostInput!): Post
+  updatePost(id: ID!, data: UpdatePostInput!): Post
+  deletePost(id: ID!): Post
+  createComment(data: CreateCommentInput!): Comment
+  updateComment(id: ID!, data: UpdateCommentInput!): Comment
+  deleteComment(id: ID!): Comment
+}
+
+type Subscription {
+  comment(postId: ID!): CommentSubscriptionPayload!
+  post: PostSubscriptionPayload!
+  myPost: PostSubscriptionPayload!
+}
+
+type AuthPayload {
+  token: String!
+}
+
+input RegisterUserInput {
+  name: String! @trim
+  email: String! @trim @constraint(format: "email")
+  password: String! @constraint(minLength: 8)
+}
+
+input LoginUserInput {
+  email: String! @trim @constraint(format: "email")
+  password: String! @constraint(minLength: 8)
+}
+
+input UpdateUserInput {
+  name: String @trim
+  lastname: String @trim
+  email: String @trim @constraint(format: "email")
+  password: String @constraint(minLength: 8)
+}
+
+input CreatePostInput {
+  title: String! @trim
+  body: String! @trim
+  published: Boolean!
+}
+
+input UpdatePostInput {
+  title: String @trim
+  body: String @trim
+  published: Boolean
+}
+
+input CreateCommentInput {
+  text: String! @trim
+  post: ID!
+}
+
+input UpdateCommentInput {
+  text: String @trim
+}
+
+type PostSubscriptionPayload {
+  mutation: MutationType!
+  node: Post
+}
+
+type CommentSubscriptionPayload {
+  mutation: MutationType!
+  node: Comment
+}
