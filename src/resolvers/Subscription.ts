@@ -1,4 +1,3 @@
-import getUserId from '../utils/getUserFromRequest'
 import { GraphQLResolveInfo } from 'graphql'
 
 const Subscription = {

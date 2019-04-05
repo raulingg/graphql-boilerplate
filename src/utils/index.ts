@@ -1,3 +1,5 @@
 export { default as generateToken } from './generateToken'
-export { default as getUserFromRequest } from './getUserFromRequest'
+export { default as getUserFromToken } from './getUserFromToken'
 export { default as hashPassword } from './hashPassword'
+export { default as extractModulesFragments } from './extractModulesFragments'
+export { default as prismaBinding } from './getPrismaBinding'

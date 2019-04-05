@@ -1,14 +1,8 @@
 import { verify } from 'jsonwebtoken'
 
-const getUserFromRequest = async (request: any): Promise<any> =>
+const getUserFromToken = async (token: string): Promise<any> =>
   new Promise((resolve, reject) => {
-    const header = request.request.headers.authorization
-
-    if (!header) {
-      reject(new Error('authorization header not supplied'))
-    }
-
-    const token = header.replace('Bearer ', '')
+    token = token.replace('Bearer ', '')
     const secret: string = process.env.JWT_SECRET || ''
 
     verify(token, secret, (err: Error, decoded: any) => {
@@ -24,4 +18,4 @@ const getUserFromRequest = async (request: any): Promise<any> =>
     })
   })
 
-export default getUserFromRequest
+export default getUserFromToken

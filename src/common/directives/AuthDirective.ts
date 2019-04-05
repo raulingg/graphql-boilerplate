@@ -1,6 +1,6 @@
 import { SchemaDirectiveVisitor } from 'graphql-tools'
 import { defaultFieldResolver } from 'graphql'
-import { getUserFromRequest } from '../utils'
+import { getUserFromToken } from '../../utils'
 
 class AuthDirective extends SchemaDirectiveVisitor {
   visitObject(type: any) {
@@ -28,7 +28,7 @@ class AuthDirective extends SchemaDirectiveVisitor {
           return resolve.apply(this, args)
         }
 
-        args[2].userId = getUserFromRequest(args[2].request)
+        args[2].userId = getUserFromToken(args[2].request)
 
         return resolve.apply(this, args)
       }

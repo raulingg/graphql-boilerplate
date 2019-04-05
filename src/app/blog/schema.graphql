@@ -1,0 +1,110 @@
+# import User from '../user/schema.graphql'
+# import PostWhereInput, PostOrderByInput, CommentWhereInput, CommentOrderByInput from '../../generated/prisma.graphql'
+
+type User {
+  posts: [Post]
+  comments: [Comment]
+}
+
+type Post {
+  id: ID!
+  title: String!
+  body: String!
+  published: Boolean!
+  author: User
+  comments: [Comment]!
+  updatedAt: String!
+  createdAt: String!
+}
+
+type Comment {
+  id: ID!
+  text: String!
+  author: User
+  post: Post
+  updatedAt: String!
+  createdAt: String!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+type Query {
+  posts(
+    where: PostWhereInput
+    orderBy: PostOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Post]!
+  myPosts(
+    where: PostWhereInput
+    orderBy: PostOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Post!]!
+  postById(id: ID!): Post!
+  comments(
+    where: CommentWhereInput
+    orderBy: CommentOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Comment!]!
+}
+
+type Mutation {
+  createPost(data: CreatePostInput!): Post
+  updatePost(id: ID!, data: UpdatePostInput!): Post
+  deletePost(id: ID!): Post
+  createComment(data: CreateCommentInput!): Comment
+  updateComment(id: ID!, data: UpdateCommentInput!): Comment
+  deleteComment(id: ID!): Comment
+}
+
+type Subscription {
+  comment(postId: ID!): CommentSubscriptionPayload!
+  post: PostSubscriptionPayload!
+  myPost: PostSubscriptionPayload!
+}
+
+input CreatePostInput {
+  title: String! @trim
+  body: String! @trim
+  published: Boolean!
+}
+
+input UpdatePostInput {
+  title: String @trim
+  body: String @trim
+  published: Boolean
+}
+
+input CreateCommentInput {
+  text: String! @trim
+  post: ID!
+}
+
+input UpdateCommentInput {
+  text: String @trim
+}
+
+type PostSubscriptionPayload {
+  mutation: MutationType!
+  node: Post
+}
+
+type CommentSubscriptionPayload {
+  mutation: MutationType!
+  node: Comment
+}

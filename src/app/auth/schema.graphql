@@ -1,0 +1,30 @@
+# import User from '../user/schema.graphql'
+# import Role from '../../generated/prisma.graphql'
+
+type User {
+  role: Role!
+}
+
+type Query {
+  me: User!
+}
+
+type Mutation {
+  login(data: LoginUserInput!): AuthPayload
+  signup(data: SignupUserInput!): AuthPayload
+}
+
+input SignupUserInput {
+  name: String! @trim
+  email: String! @trim @constraint(format: "email")
+  password: String! @constraint(minLength: 8)
+}
+
+input LoginUserInput {
+  email: String! @trim @constraint(format: "email")
+  password: String! @constraint(minLength: 8)
+}
+
+type AuthPayload {
+  token: String!
+}

@@ -6,7 +6,7 @@
   "scripts": {
     "type-check": "tsc --noEmit",
     "type-check:watch": "yarn type-check --watch",
-    "ts-node": "ts-node src/index.js",
+    "ts-node": "ts-node src/index.ts",
     "dev": "env-cmd ./config/dev.env nodemon",
     "serve": "env-cmd ./config/dev.env node dist/index.js",
     "start": "node dist/index.js",
@@ -19,7 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
-    "@graphql-modules/core": "^0.6.6",
+    "@graphql-modules/core": "0.7.0",
     "@types/aws-lambda": "^8.10.22",
     "@types/bcryptjs": "^2.4.2",
     "@types/graphql-depth-limit": "^1.1.0",
@@ -29,6 +29,7 @@
     "bcryptjs": "^2.4.3",
     "env-cmd": "^8.0.2",
     "graphql-depth-limit": "^1.1.0",
+    "graphql-import-node": "^0.0.1",
     "graphql-shield": "^5.3.1",
     "graphql-yoga": "^1.14.10",
     "jsonwebtoken": "^8.5.0",

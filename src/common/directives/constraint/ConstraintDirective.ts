@@ -4,7 +4,8 @@ import {
   GraphQLInt,
   GraphQLString,
   GraphQLNonNull,
-  GraphQLFloat
+  GraphQLFloat,
+  GraphQLInputField
 } from 'graphql'
 import { SchemaDirectiveVisitor } from 'graphql-tools'
 import ConstraintStringType from './ConstraintStringType'
@@ -37,11 +38,11 @@ class ConstraintDirective extends SchemaDirectiveVisitor {
     })
   }
 
-  visitInputFieldDefinition(field: any) {
+  visitInputFieldDefinition(field: GraphQLInputField): void {
     this.wrapType(field)
   }
 
-  wrapType(field: any) {
+  wrapType(field: GraphQLInputField | any) {
     const fieldName = field.astNode.name.value
 
     if (

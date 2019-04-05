@@ -20,8 +20,6 @@ const Mutation = {
       }
     })
 
-    console.log(user)
-
     return {
       token: await generateToken({ user: { id: user.id, role: user.role } })
     }
