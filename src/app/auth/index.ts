@@ -6,7 +6,7 @@ import resolvers from './resolvers'
 import AuthProvider from './providers/auth.provider'
 import CommonModule from '../../common'
 import { ProviderScope } from '@graphql-modules/di'
-import { Request, Response } from 'express'
+import { Request, Response } from 'express';
 import UserModule from '../user'
 
 export interface ISession {

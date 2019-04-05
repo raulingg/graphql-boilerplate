@@ -4,21 +4,11 @@
   "description": "Graphql Play around",
   "main": "index.js",
   "scripts": {
-    "type-check": "tsc --noEmit",
-    "type-check:watch": "yarn type-check --watch",
-    "ts-node": "ts-node src/index.ts",
-    "dev": "env-cmd ./config/dev.env nodemon",
-    "serve": "env-cmd ./config/dev.env node dist/index.js",
-    "start": "node dist/index.js",
-    "build": "yarn build:types && yarn build:js",
-    "build:types": "tsc --build tsconfig.json",
-    "build:js": "babel src --out-dir dist --extensions \".js,.ts,.tsx\" --source-maps inline --copy-files",
-    "heroku-postbuild": "yarn build"
+    "start": "ts-node src/index.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/polyfill": "^7.2.5",
     "@graphql-modules/core": "0.7.0",
     "@types/aws-lambda": "^8.10.22",
     "@types/bcryptjs": "^2.4.2",
@@ -41,13 +31,6 @@
     "validator": "^10.11.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
-    "@babel/node": "^7.2.2",
-    "@babel/plugin-proposal-class-properties": "^7.3.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
-    "@babel/preset-typescript": "^7.3.3",
     "nodemon": "^1.17.5"
   }
 }
