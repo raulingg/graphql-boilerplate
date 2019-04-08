@@ -1,4 +1,3 @@
-import '@babel/polyfill/noConflict'
 import { GraphQLServer } from 'graphql-yoga'
 import { auth, permission } from './middlewares'
 import depthLimit from 'graphql-depth-limit'
