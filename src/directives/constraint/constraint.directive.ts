@@ -7,9 +7,9 @@ import {
   GraphQLFloat
 } from 'graphql'
 import { SchemaDirectiveVisitor } from 'graphql-tools'
-import ConstraintStringType from './ConstraintStringType'
-import ConstraintNumberType from './ConstraintNumberType'
-import { TrimType } from '../TrimDirective'
+import ConstraintStringType from './constraintStringType'
+import ConstraintNumberType from './constraintNumberType'
+import { TrimType } from '../trim.directive'
 
 class ConstraintDirective extends SchemaDirectiveVisitor {
   static getDirectiveDeclaration(directiveName: string): GraphQLDirective {

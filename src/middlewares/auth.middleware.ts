@@ -11,7 +11,6 @@ const isAuthenticated = rule()(async (parent, args, ctx: IAppContext) => {
     ? ctx.request.request.get(AUTH_HEADER)
     : ctx.request.connection.context.Authorization
 
-  console.log(authToken)
   if (!authToken) return false
 
   try {

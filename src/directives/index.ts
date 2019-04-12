@@ -1,4 +1,4 @@
-export { default as constraint } from './constraint/ConstraintDirective'
-export { default as auth } from './AuthDirective'
-export { default as role } from './RoleDirective'
-export { default as trim } from './TrimDirective'
+export {
+  default as ConstraintDirective
+} from './constraint/constraint.directive'
+export { default as TrimDirective } from './trim.directive'

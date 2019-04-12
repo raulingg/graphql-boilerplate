@@ -1,5 +1,5 @@
 import { GraphQLScalarType } from 'graphql'
-import ConstraintDirectiveError from './ConstraintDirectiveError'
+import ConstraintDirectiveError from './constraintDirectiveError'
 
 class ConstraintNumberType extends GraphQLScalarType {
   constructor(fieldName: string, type: any, args: any) {

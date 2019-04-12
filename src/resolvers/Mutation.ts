@@ -96,7 +96,7 @@ const Mutation = {
     _,
     { where }: { where: UserWhereUniqueInput },
     { db }: IAppContext
-  ) => db.mutation.deleteUser(where),
+  ) => db.mutation.deleteUser({ where }),
   createPost: (
     _,
     { data }: { data: PostCreateInput },

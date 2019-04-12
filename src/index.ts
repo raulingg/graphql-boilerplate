@@ -2,7 +2,7 @@ import { GraphQLServer } from 'graphql-yoga'
 import { makeExecutableSchema } from 'graphql-tools'
 import { importSchema } from 'graphql-import'
 import { resolvers } from './resolvers'
-import { constraint, trim } from './directives'
+import { ConstraintDirective, TrimDirective } from './directives'
 import { AuthMiddleware, PermissionsMiddleware } from './middlewares'
 import db from './prisma'
 import depthLimit from 'graphql-depth-limit'
@@ -16,7 +16,7 @@ const schema = makeExecutableSchema({
 
 const server = new GraphQLServer({
   schema,
-  schemaDirectives: { trim, constraint },
+  schemaDirectives: { TrimDirective, ConstraintDirective },
   middlewares: [AuthMiddleware, PermissionsMiddleware],
   context: (request: IRequest): IAppContext => ({
     request,

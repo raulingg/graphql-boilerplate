@@ -1,5 +1,5 @@
 import { GraphQLScalarType } from 'graphql'
-import ConstraintDirectiveError from './ConstraintDirectiveError'
+import ConstraintDirectiveError from './constraintDirectiveError'
 import { contains, isLength } from 'validator'
 import formats from './formats'
 
