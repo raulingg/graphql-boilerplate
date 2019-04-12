@@ -22,25 +22,24 @@
   "author": "Raul Quispe <relaxedchild@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "prisma-binding": "^2.3.5",
+    "graphql-yoga": "^1.14.10",
+    "graphql-shield": "^5.3.1",
+    "graphql-depth-limit": "^1.1.0",
+    "jsonwebtoken": "^8.5.0",
+    "bcryptjs": "^2.4.3",
+    "validator": "^10.11.0"
+  },
+  "devDependencies": {
     "@types/aws-lambda": "^8.10.22",
     "@types/bcryptjs": "^2.4.2",
     "@types/graphql-depth-limit": "^1.1.0",
     "@types/jsonwebtoken": "^8.3.2",
     "@types/validator": "^10.9.0",
     "@types/ws": "^6.0.1",
-    "bcryptjs": "^2.4.3",
     "env-cmd": "^8.0.2",
-    "graphql-depth-limit": "^1.1.0",
-    "graphql-shield": "^5.3.1",
-    "graphql-yoga": "^1.14.10",
-    "jsonwebtoken": "^8.5.0",
-    "prisma-binding": "^2.3.5",
-    "reflect-metadata": "^0.1.13",
-    "typescript": "^3.3.3333",
-    "validator": "^10.11.0"
-  },
-  "devDependencies": {
     "nodemon": "^1.17.5",
-    "ts-node": "^8.0.3"
+    "ts-node": "^8.0.3",
+    "typescript": "^3.3.3333"
   }
 }
