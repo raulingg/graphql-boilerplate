@@ -1,25 +1,27 @@
 {
-  "name": "graphql-basics",
-  "version": "1.0.0",
-  "description": "Graphql Play around",
-  "main": "index.js",
+  "name": "graphql-boilerplate",
+  "version": "0.1.0",
+  "description": "Graphql Yoga + Prisma + Typescript",
+  "keywords": [
+    "graphql",
+    "yoga",
+    "prisma",
+    "boilerplate"
+  ],
+  "main": "src/index.js",
   "scripts": {
     "type-check": "tsc --noEmit",
     "type-check:watch": "yarn type-check --watch",
-    "ts-node": "ts-node src/index.js",
-    "dev": "env-cmd ./config/dev.env nodemon",
-    "serve": "env-cmd ./config/dev.env node dist/index.js",
+    "ts-node": "ts-node src/index.ts",
+    "dev": "env-cmd ./config/.env.dev nodemon",
+    "serve": "env-cmd ./config/.env.dev node dist/index.js",
     "start": "node dist/index.js",
-    "build": "yarn build:types && yarn build:js",
-    "build:types": "tsc --build tsconfig.json",
-    "build:js": "babel src --out-dir dist --extensions \".js,.ts,.tsx\" --source-maps inline --copy-files",
+    "build": "tsc --build tsconfig.json",
     "heroku-postbuild": "yarn build"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Raul Quispe <relaxedchild@gmail.com>",
+  "license": "MIT",
   "dependencies": {
-    "@babel/polyfill": "^7.2.5",
-    "@graphql-modules/core": "^0.6.6",
     "@types/aws-lambda": "^8.10.22",
     "@types/bcryptjs": "^2.4.2",
     "@types/graphql-depth-limit": "^1.1.0",
@@ -33,20 +35,12 @@
     "graphql-yoga": "^1.14.10",
     "jsonwebtoken": "^8.5.0",
     "prisma-binding": "^2.3.5",
-    "prisma-client-lib": "^1.28.3",
     "reflect-metadata": "^0.1.13",
-    "ts-node": "^8.0.3",
     "typescript": "^3.3.3333",
     "validator": "^10.11.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
-    "@babel/node": "^7.2.2",
-    "@babel/plugin-proposal-class-properties": "^7.3.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
-    "@babel/preset-typescript": "^7.3.3",
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.17.5",
+    "ts-node": "^8.0.3"
   }
 }

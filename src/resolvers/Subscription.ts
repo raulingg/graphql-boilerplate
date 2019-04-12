@@ -1,12 +1,12 @@
-import getUserId from '../utils/getUserFromRequest'
 import { GraphQLResolveInfo } from 'graphql'
+import IAppContext from '../interfaces/IAppContext'
 
 const Subscription = {
   comment: {
     subscribe(
-      parent: any,
+      _,
       { postId }: { postId: string },
-      { db }: { db: any },
+      { db }: IAppContext,
       info: GraphQLResolveInfo
     ) {
       return db.subscription.comment(
@@ -24,12 +24,7 @@ const Subscription = {
     }
   },
   post: {
-    subscribe(
-      parent: any,
-      { postId }: { postId: string },
-      { db }: { db: any },
-      info: GraphQLResolveInfo
-    ) {
+    subscribe(_, __, { db }: IAppContext, info: GraphQLResolveInfo) {
       return db.subscription.post(
         {
           where: {
@@ -43,20 +38,13 @@ const Subscription = {
     }
   },
   myPost: {
-    subscribe(
-      parent: any,
-      {},
-      { db, request }: { db: any; request: any },
-      info: GraphQLResolveInfo
-    ) {
-      const userId = request.userId
-
+    subscribe(_, __, { db, user }: IAppContext, info: GraphQLResolveInfo) {
       return db.subscription.post(
         {
           where: {
             node: {
               author: {
-                id: userId
+                id: user.id
               }
             }
           }

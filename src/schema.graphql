@@ -1,4 +1,4 @@
-#import  UserOrderByInput, UserWhereInput, PostOrderByInput, CommentOrderByInput, PostWhereInput, UserWhereUniqueInput, Role from './generated/prisma.graphql'
+#import  UserOrderByInput, UserWhereInput, UserWhereUniqueInput, PostOrderByInput, CommentOrderByInput, PostWhereInput, UserWhereUniqueInput, Role from './generated/prisma.graphql'
 
 directive @trim on INPUT_FIELD_DEFINITION
 directive @constraint(
@@ -95,8 +95,9 @@ type Query {
 
 type Mutation {
   login(data: LoginUserInput!): AuthPayload!
-  register(data: RegisterUserInput!): AuthPayload!
-  updateUser(data: UpdateUserInput!): User
+  signup(data: SignupUserInput!): AuthPayload!
+  updateMe(data: UpdateMeInput): User
+  updateUser(where: UserWhereUniqueInput!, data: UpdateUserInput!): User
   deleteUser(where: UserWhereUniqueInput!): User
   createPost(data: CreatePostInput!): Post
   updatePost(id: ID!, data: UpdatePostInput!): Post
@@ -116,7 +117,7 @@ type AuthPayload {
   token: String!
 }
 
-input RegisterUserInput {
+input SignupUserInput {
   name: String! @trim
   email: String! @trim @constraint(format: "email")
   password: String! @constraint(minLength: 8)
@@ -127,11 +128,19 @@ input LoginUserInput {
   password: String! @constraint(minLength: 8)
 }
 
+input UpdateMeInput {
+  name: String @trim
+  lastname: String @trim
+  email: String @trim @constraint(format: "email")
+  password: String @constraint(minLength: 8)
+}
+
 input UpdateUserInput {
   name: String @trim
   lastname: String @trim
   email: String @trim @constraint(format: "email")
   password: String @constraint(minLength: 8)
+  role: Role
 }
 
 input CreatePostInput {

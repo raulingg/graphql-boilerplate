@@ -1,14 +1,9 @@
 import { verify } from 'jsonwebtoken'
+import IUserContext from '../interfaces/IUserContext'
 
-const getUserFromRequest = async (request: any): Promise<any> =>
+const getUserFromToken = async (token: string): Promise<IUserContext> =>
   new Promise((resolve, reject) => {
-    const header = request.request.headers.authorization
-
-    if (!header) {
-      reject(new Error('authorization header not supplied'))
-    }
-
-    const token = header.replace('Bearer ', '')
+    token = token.replace('Bearer ', '')
     const secret: string = process.env.JWT_SECRET || ''
 
     verify(token, secret, (err: Error, decoded: any) => {
@@ -24,4 +19,4 @@ const getUserFromRequest = async (request: any): Promise<any> =>
     })
   })
 
-export default getUserFromRequest
+export default getUserFromToken

@@ -64,7 +64,6 @@ class ConstraintDirective extends SchemaDirectiveVisitor {
     } else if (field.type === GraphQLFloat || field.type === GraphQLInt) {
       field.type = new ConstraintNumberType(fieldName, field.type, this.args)
     } else {
-      console.log(field.type)
       throw new Error(`Not a scalar type: ${field.type}`)
     }
   }

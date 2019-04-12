@@ -1,6 +1,10 @@
+# Editors
+.vscode
+nbproject
+
+# folders
 node_modules/
-config/
-dist/
+/dist/
 .DS_Store
 yarn-error.log
-src/generated/
+/src/generated/

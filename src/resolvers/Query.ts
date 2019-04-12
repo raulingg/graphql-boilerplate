@@ -1,20 +1,19 @@
 import { GraphQLResolveInfo } from 'graphql'
+import IAppContext from '../interfaces/IAppContext'
 
 const Query = {
-  me: (_: any, __: any, { db, user }: { db: any; user: any }) =>
-    db.query.user({
-      where: {
-        id: user.id
-      }
-    }),
-  users: (_: any, args: any, { db }: { db: any }, info: GraphQLResolveInfo) =>
+  me: (_, __, { db, user }: IAppContext, info: GraphQLResolveInfo) =>
+    db.query.user(
+      {
+        where: {
+          id: user.id
+        }
+      },
+      info
+    ),
+  users: (_, args, { db }: IAppContext, info: GraphQLResolveInfo) =>
     db.query.users(args, info),
-  posts: (
-    _: any,
-    args: any,
-    { db, user }: { db: any; user: any },
-    info: GraphQLResolveInfo
-  ) => {
+  posts: (_, args, { db, user }: IAppContext, info: GraphQLResolveInfo) => {
     if (!user || user.role !== 'Admin') {
       args.where = {
         ...args.where,
@@ -24,12 +23,7 @@ const Query = {
 
     return db.query.posts(args, info)
   },
-  myPosts(
-    _: any,
-    args: any,
-    { db, user }: { db: any; user: any },
-    info: GraphQLResolveInfo
-  ) {
+  myPosts(_, args, { db, user }: IAppContext, info: GraphQLResolveInfo) {
     args.where = {
       ...args.where,
       author: {
@@ -40,9 +34,9 @@ const Query = {
     return db.query.posts(args, info)
   },
   postById: async (
-    _: any,
-    args: any,
-    { db, user }: { db: any; user: any },
+    _,
+    args,
+    { db, user }: IAppContext,
     info: GraphQLResolveInfo
   ) => {
     const opArgs: any = {
@@ -65,12 +59,8 @@ const Query = {
 
     return posts[0]
   },
-  comments: (
-    _: any,
-    args: any,
-    { db }: { db: any },
-    info: GraphQLResolveInfo
-  ) => db.query.comments(args, info)
+  comments: (_, args, { db }: IAppContext, info: GraphQLResolveInfo) =>
+    db.query.comments(args, info)
 }
 
 export { Query as default }

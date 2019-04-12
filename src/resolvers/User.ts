@@ -1,17 +1,19 @@
+import IAppContext from '../interfaces/IAppContext'
+
 const User = {
-  posts: (parent: any, _: any, { user }: { user: any }) => {
+  posts: (parent, _, { user }: IAppContext) => {
     const posts = (parent && parent.posts) || []
 
-    if (user.role === 'Admin') {
+    if (user && user.role === 'Admin') {
       return posts
     }
 
-    return posts.filter((post: any) => post.published)
+    return posts.filter(post => post.published)
   },
 
   email: {
     fragment: 'fragment userId on User { id }',
-    resolve(parent: any, _: any, { user }: { user: any }) {
+    resolve(parent, _, { user }: IAppContext) {
       if (user && (user.id === parent.id || user.role === 'Admin'))
         return parent.email
 
