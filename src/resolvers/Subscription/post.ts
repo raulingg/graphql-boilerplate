@@ -1,28 +1,7 @@
+import IAppContext from '../../types/IAppContext'
 import { GraphQLResolveInfo } from 'graphql'
-import IAppContext from '../interfaces/IAppContext'
 
-const Subscription = {
-  comment: {
-    subscribe(
-      _,
-      { postId }: { postId: string },
-      { db }: IAppContext,
-      info: GraphQLResolveInfo
-    ) {
-      return db.subscription.comment(
-        {
-          where: {
-            node: {
-              post: {
-                id: postId
-              }
-            }
-          }
-        },
-        info
-      )
-    }
-  },
+const post = {
   post: {
     subscribe(_, __, { db }: IAppContext, info: GraphQLResolveInfo) {
       return db.subscription.post(
@@ -55,4 +34,4 @@ const Subscription = {
   }
 }
 
-export { Subscription as default }
+export default post

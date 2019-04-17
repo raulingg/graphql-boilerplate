@@ -6,8 +6,8 @@ import { ConstraintDirective, TrimDirective } from './directives'
 import { AuthMiddleware, PermissionsMiddleware } from './middlewares'
 import db from './prisma'
 import depthLimit from 'graphql-depth-limit'
-import IAppContext from './interfaces/IAppContext'
-import IRequest from './interfaces/IRequest'
+import IAppContext from './types/IAppContext'
+import IRequest from './types/IRequest'
 
 const schema = makeExecutableSchema({
   typeDefs: importSchema('./src/schema.graphql'),

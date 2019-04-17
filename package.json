@@ -12,22 +12,22 @@
   "scripts": {
     "type-check": "tsc --noEmit",
     "type-check:watch": "yarn type-check --watch",
-    "ts-node": "ts-node src/index.ts",
+    "build": "tsc --build tsconfig.json",
+    "database:seed": "env-cmd ./config/.env.dev ts-node prisma/seed.ts",
     "dev": "env-cmd ./config/.env.dev nodemon",
     "serve": "env-cmd ./config/.env.dev node dist/index.js",
     "start": "node dist/index.js",
-    "build": "tsc --build tsconfig.json",
     "heroku-postbuild": "yarn build"
   },
   "author": "Raul Quispe <relaxedchild@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "prisma-binding": "^2.3.5",
-    "graphql-yoga": "^1.14.10",
-    "graphql-shield": "^5.3.1",
-    "graphql-depth-limit": "^1.1.0",
-    "jsonwebtoken": "^8.5.0",
     "bcryptjs": "^2.4.3",
+    "graphql-depth-limit": "^1.1.0",
+    "graphql-shield": "^5.3.1",
+    "graphql-yoga": "^1.14.10",
+    "jsonwebtoken": "^8.5.0",
+    "prisma-binding": "^2.3.5",
     "validator": "^10.11.0"
   },
   "devDependencies": {

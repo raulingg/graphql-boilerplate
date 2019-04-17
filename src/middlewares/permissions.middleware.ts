@@ -1,5 +1,5 @@
 import { rule, shield, or } from 'graphql-shield'
-import IAppContext from '../interfaces/IAppContext'
+import IAppContext from '../types/IAppContext'
 
 const isAdmin = rule()(
   async (parent, args, ctx: IAppContext) =>

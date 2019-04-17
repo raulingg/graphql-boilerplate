@@ -1,18 +1,7 @@
+import IAppContext from '../../types/IAppContext'
 import { GraphQLResolveInfo } from 'graphql'
-import IAppContext from '../interfaces/IAppContext'
 
-const Query = {
-  me: (_, __, { db, user }: IAppContext, info: GraphQLResolveInfo) =>
-    db.query.user(
-      {
-        where: {
-          id: user.id
-        }
-      },
-      info
-    ),
-  users: (_, args, { db }: IAppContext, info: GraphQLResolveInfo) =>
-    db.query.users(args, info),
+const post = {
   posts: (_, args, { db, user }: IAppContext, info: GraphQLResolveInfo) => {
     if (!user || user.role !== 'Admin') {
       args.where = {
@@ -58,9 +47,7 @@ const Query = {
     }
 
     return posts[0]
-  },
-  comments: (_, args, { db }: IAppContext, info: GraphQLResolveInfo) =>
-    db.query.comments(args, info)
+  }
 }
 
-export { Query as default }
+export default post

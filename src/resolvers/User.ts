@@ -1,4 +1,4 @@
-import IAppContext from '../interfaces/IAppContext'
+import IAppContext from '../types/IAppContext'
 
 const User = {
   posts: (parent, _, { user }: IAppContext) => {
@@ -10,7 +10,6 @@ const User = {
 
     return posts.filter(post => post.published)
   },
-
   email: {
     fragment: 'fragment userId on User { id }',
     resolve(parent, _, { user }: IAppContext) {

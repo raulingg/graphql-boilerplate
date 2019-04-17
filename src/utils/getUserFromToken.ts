@@ -1,5 +1,5 @@
 import { verify } from 'jsonwebtoken'
-import IUserContext from '../interfaces/IUserContext'
+import IUserContext from '../types/IUserContext'
 
 const getUserFromToken = async (token: string): Promise<IUserContext> =>
   new Promise((resolve, reject) => {

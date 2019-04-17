@@ -1,6 +1,6 @@
 {
   "ignore": ["**/*.test.ts", "**/*.spec.ts", ".git", "node_modules"],
   "watch": ["src"],
-  "exec": "yarn ts-node",
+  "exec": "ts-node src/index.ts",
   "ext": "ts,graphql"
 }

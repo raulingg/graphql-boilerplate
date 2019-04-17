@@ -1,6 +1,6 @@
 import { rule, shield, or } from 'graphql-shield'
 import { getUserFromToken } from '../utils'
-import IAppContext from '../interfaces/IAppContext'
+import IAppContext from '../types/IAppContext'
 
 const AUTH_HEADER = 'authorization'
 
