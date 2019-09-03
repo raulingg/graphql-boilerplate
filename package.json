@@ -35,7 +35,7 @@
     "@types/bcryptjs": "2.4.2",
     "@types/graphql-depth-limit": "1.1.2",
     "@types/jsonwebtoken": "8.3.3",
-    "@types/validator": "10.11.0",
+    "@types/validator": "10.11.3",
     "@types/ws": "6.0.1",
     "env-cmd": "8.0.2",
     "nodemon": "1.19.0",
