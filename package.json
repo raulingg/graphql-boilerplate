@@ -28,7 +28,7 @@
     "graphql-yoga": "^1.14.10",
     "jsonwebtoken": "^8.5.0",
     "prisma-binding": "^2.3.5",
-    "validator": "^10.11.0"
+    "validator": "^11.0.0"
   },
   "devDependencies": {
     "@types/aws-lambda": "8.10.24",
