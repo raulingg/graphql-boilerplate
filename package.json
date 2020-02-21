@@ -37,7 +37,7 @@
     "@types/jsonwebtoken": "8.3.3",
     "@types/validator": "10.11.3",
     "@types/ws": "6.0.1",
-    "env-cmd": "8.0.2",
+    "env-cmd": "10.1.0",
     "nodemon": "1.19.2",
     "ts-node": "8.3.0",
     "typescript": "3.6.2"
